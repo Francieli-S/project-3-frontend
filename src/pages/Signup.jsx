@@ -15,7 +15,8 @@ export default function Signup() {
         'Content-Type': 'application/json'
       }, body: JSON.stringify({email, password})
     })
-    response.status === 200 && navigate('/login')
+    console.log('hello')
+    response.status === 201 && navigate('/login')
   }
 
   return (

@@ -1,22 +1,32 @@
-import { useState } from 'react';
+import { useContext, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { SessionContext } from '../context/SessionContext';
 
 export default function Login() {
-  const navigate = useNavigate()
+  const { setToken, setIsLoggedIn } = useContext(SessionContext);
+
+
+  const navigate = useNavigate();
 
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
-  const handleSubmit = async e => {
-    e.preventDefault()
+  const handleSubmit = async (e) => {
+    e.preventDefault();
     const response = await fetch('http://localhost:5005/auth/login', {
-      method: 'POST', 
+      method: 'POST',
       headers: {
-        'Content-Type': 'application/json'
-      }, body: JSON.stringify({email, password})
-    })
-    response.status === 200 && navigate('/profile')
-  }
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({ email, password }),
+    });
+    if (response.status === 200) {
+      const tokenFromResponse = await response.json();
+      setToken(tokenFromResponse);
+      setIsLoggedIn(true)
+      navigate('/profile');
+    }
+  };
 
   return (
     <div>
@@ -36,9 +46,8 @@ export default function Login() {
           value={password}
           onChange={(e) => setPassword(e.target.value)}
         />
-        <button type='submit'>Sign Up</button>
+        <button type='submit'>Login</button>
       </form>
     </div>
   );
 }
-
