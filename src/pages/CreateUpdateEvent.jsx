@@ -1,9 +1,13 @@
-import { useState } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import { useEffect, useState } from 'react';
+import { Link, useNavigate, useParams } from 'react-router-dom';
 import axios from 'axios';
 
-export default function CreateEvent() {
+export default function CreateUpdateEvent({isUpdating = false}) {
   const navigate = useNavigate();
+
+  // in case isUpdating = true
+  const {eventId} = useParams()
+
   const [title, setTitle] = useState('');
   const [date, setDate] = useState('');
   const [location, setLocation] = useState('');
@@ -21,8 +25,10 @@ export default function CreateEvent() {
     };
     console.log(body)
 
-    axios
-    .post('http://localhost:5005/event/create', body)
+    !isUpdating ? 
+    axios.post('http://localhost:5005/event/create', body) :
+      axios.put(`http://localhost:5005/event/${eventId}`, body)
+    
     .then(() => {
       setTitle('')
       setDate('')
@@ -30,7 +36,7 @@ export default function CreateEvent() {
       setGenre('')
       setDetails('')
 
-      navigate('/')
+      navigate(`/event-one/${eventId}`)
     })
     .catch(error => {
       console.log(error);
@@ -38,9 +44,31 @@ export default function CreateEvent() {
     console.log('submit');
   }
 
+  const axiosEvent = () => {
+    const response = axios.get('http://localhost:5005/all-events')
+    .then(() => {
+      if(response.status === 200) {
+        const event = response.data
+        setTitle(event.title)
+        setDate(event.date)
+        setLocation(event.location)
+        setGenre(event.genre)
+        setDetails(event.details)
+      }
+    })
+
+  }
+
+useEffect(() => {
+  if (isUpdating) {
+    axiosEvent()
+  }
+}, [isUpdating])
+
   return (
     <div>
         <Link to={'/'}>Home</Link>
+        <h1>{isUpdating ? 'Update event' : 'Create event'}</h1>
       <form style={{ display: 'grid' }} onSubmit={handleSubmit}>
         <label>Title</label>
         <input
@@ -77,7 +105,7 @@ export default function CreateEvent() {
             setDetails(e.target.value);
           }}
         />
-        <button type='submit'>Add Event!</button>
+        <button type='submit'>{isUpdating ? 'Update' : 'Create'}</button>
       </form>
     </div>
   );
