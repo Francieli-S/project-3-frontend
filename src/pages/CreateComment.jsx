@@ -1,43 +1,42 @@
-import { useState } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
-import axios from 'axios';
+import { useState } from "react";
+import { useNavigate } from "react-router-dom";
+import axios from "axios";
 
 export default function CreateComment() {
   const navigate = useNavigate();
-  const [comment, setComment] = useState('');
- 
+  const [comment, setComment] = useState("");
+
   const handleSubmit = (e) => {
     e.preventDefault();
     const body = {
-      comment
+      comment,
     };
-    console.log(body)
+    console.log(body);
 
     axios
-    .post('http://localhost:5005/comment/create', body)
-    .then(() => {
-      setComment('')
+      .post("http://localhost:5005/comment/new-comment", body)
+      .then(() => {
+        setComment("");
 
-      navigate('/')
-    })
-    .catch(error => {
-      console.log(error);
-    })
-    console.log('submit');
-  }
+        navigate("/event-my");
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+    console.log("submit");
+  };
 
   return (
     <div>
-        <Link to={'/'}>Home</Link>
-      <form style={{ display: 'grid' }} onSubmit={handleSubmit}>
-        <label>Comment</label>
+      <form style={{ display: "grid" }} onSubmit={handleSubmit}>
+        <label></label>
         <input
           value={comment}
           onChange={(e) => {
             setComment(e.target.value);
           }}
-        />        
-        <button type='submit'>Add Comment!</button>
+        />
+        <button type="submit">Add Comment!</button>
       </form>
     </div>
   );
