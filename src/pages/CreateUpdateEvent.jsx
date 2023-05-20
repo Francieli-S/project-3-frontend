@@ -7,6 +7,8 @@ export default function CreateUpdateEvent({isUpdating = false}) {
 
   // in case isUpdating = true
   const {eventId} = useParams()
+  console.log('ID', eventId)
+  console.log('ISUPDATING', isUpdating)
 
   const [title, setTitle] = useState('');
   const [date, setDate] = useState('');
@@ -45,7 +47,7 @@ export default function CreateUpdateEvent({isUpdating = false}) {
   }
 
   const axiosEvent = () => {
-    const response = axios.get('http://localhost:5005/all-events')
+    const response = axios.get(`http://localhost:5005/event/${eventId}`)
     .then(() => {
       if(response.status === 200) {
         const event = response.data

@@ -22,7 +22,7 @@ export default function App() {
       <Route path="/event-my" element={<PrivateRoute><MyEvents /></PrivateRoute>} />
       <Route path="/event-one/:eventId" element={<PrivateRoute><OneEvent /></PrivateRoute>} />
       <Route path="/event-create" element={<PrivateRoute><CreateUpdateEvent /></PrivateRoute>} />
-      <Route path="/event-update/:eventId" element={<PrivateRoute><CreateUpdateEvent isUpdanting /></PrivateRoute>} />
+      <Route path="/event-update/:eventId" element={<PrivateRoute><CreateUpdateEvent isUpdating /></PrivateRoute>} />
       <Route path="/comment-create" element={<PrivateRoute><CreateComment /></PrivateRoute>} />
     </Routes>
   );

@@ -6,47 +6,24 @@ export default function OneEvent() {
   const [eventDetails, setEventDetails] = useState();
   const { eventId } = useParams();
 
-  console.log('EVENT', eventDetails);
-  console.log('ID', eventId);
-
   const navigate = useNavigate();
 
     useEffect(() => {
       axios
         .get(`http://localhost:5005/event/${eventId}`)
         .then((response) => {
-          console.log('ONE', response.status)
           setEventDetails(response.data);
         })
         .catch((error) => console.log(error));
     }, [eventId]);
-
-//   const fetchEvent = async () => {
-//     try {
-//       const response = await fetch(`http://localhost:5005/event/${eventId}`);
-//       console.log('RESPONSE', response)
-//       if (response.status === 200) {
-//         const parsed = await response.json();
-//         setEventDetails(parsed);
-//       }
-//     } catch (error) {
-//       console.log(error);
-//     }
-//   };
-
-//  useEffect(() => {
-//      fetchEvent();
-//    }, [eventId]);
 
   const handleDelete = async () => {
     try {
       const response = await axios.delete(
         `http://localhost:5005/event/${eventId}`
       );
-      console.log('DELETE', response.status);
-
-      if (response === 200) {
-        navigate('/event-my');
+      if (response.status === 200) {
+        navigate('/event-my');  
       }
     } catch (error) {
       console.log(error);
@@ -65,7 +42,7 @@ export default function OneEvent() {
       <p>{eventDetails.genre}</p>
       <h3>Details</h3>
       <p>{eventDetails.details}</p>
-      <Link to={'/event-update/:eventId'}>Update</Link>
+      <Link to={`/event-update/${eventDetails._id}`}>Update</Link>
       <button type='button' onClick={handleDelete}>
         Delete
       </button>
