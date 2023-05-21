@@ -2,14 +2,15 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 
-export default function CreateComment() {
+export default function CreateComment({eventId}) {
   const navigate = useNavigate();
   const [comment, setComment] = useState("");
 
   const handleSubmit = (e) => {
     e.preventDefault();
     const body = {
-      comment,
+      text: comment,
+      eventAbout: {_id: eventId}
     };
     console.log(body);
 

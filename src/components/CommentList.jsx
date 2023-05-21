@@ -4,9 +4,7 @@ import { useNavigate, useParams } from "react-router-dom";
 
 function CommentList() {
   const [commentDetails, setCommentDetails] = useState([]);
-  const { commentId } = useParams();
   const navigate = useNavigate;
-  console.log(commentId);
   const commentData = async () => {
     try {
       const response = await axios.get(
@@ -23,7 +21,7 @@ function CommentList() {
     commentData();
   }, []);
 
-  const handleDelete = async () => {
+  const handleDelete = async (commentId) => {
     try {
       const response = await axios.delete(
         `http://localhost:5005/comment/${commentId}`
@@ -38,10 +36,10 @@ function CommentList() {
 
   return commentDetails ? (
     <>
-      {commentDetails.map((event) => (
-        <div key={event._id}>
-          <p>{event.comment}</p>
-          <button type="button" onClick={handleDelete}>
+      {commentDetails.map((comment) => (
+        <div key={comment._id}>
+          <p>{comment.text}</p>
+          <button type="button" onClick={() => handleDelete(comment._id)}>
             Delete
           </button>
         </div>

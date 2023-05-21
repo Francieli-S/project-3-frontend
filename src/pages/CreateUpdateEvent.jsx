@@ -7,7 +7,7 @@ export default function CreateUpdateEvent({ isUpdating = false }) {
 
   // in case isUpdating = true
   const { eventId } = useParams();
- 
+
   const [title, setTitle] = useState('');
   const [date, setDate] = useState('');
   const [location, setLocation] = useState('');
@@ -26,10 +26,23 @@ export default function CreateUpdateEvent({ isUpdating = false }) {
     console.log(body);
 
     !isUpdating
-      ? axios.post('http://localhost:5005/event/create', body)
+      ? axios
+          .post('http://localhost:5005/event/create', body)
+          .then((response) => {
+            const newEventId = response.data._id
+            setTitle('');
+            setDate('');
+            setLocation('');
+            setGenre('');
+            setDetails('');
+
+            navigate(`/event-one/${newEventId}`);
+          })
+          .catch((error) => {
+            console.log(error);
+          })
       : axios
           .put(`http://localhost:5005/event/${eventId}`, body)
-
           .then(() => {
             setTitle('');
             setDate('');
