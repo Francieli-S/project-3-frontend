@@ -1,6 +1,8 @@
-import { useState, useEffect } from 'react';
-import { Link, useNavigate, useParams } from 'react-router-dom';
-import axios from 'axios';
+import { useState, useEffect } from "react";
+import { Link, useNavigate, useParams } from "react-router-dom";
+import axios from "axios";
+import CreateComment from "./CreateComment";
+import CommentList from "../components/CommentList";
 
 export default function OneEvent() {
   const [eventDetails, setEventDetails] = useState();
@@ -46,6 +48,8 @@ export default function OneEvent() {
       <button type='button' onClick={handleDelete}>
         Delete
       </button>
+      <CommentList />
+      <CreateComment />
     </div>
   ) : (
     <h1>Loading...</h1>
