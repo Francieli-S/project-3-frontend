@@ -7,10 +7,6 @@ import CommentList from "../components/CommentList";
 export default function OneEvent() {
   const [eventDetails, setEventDetails] = useState();
   const { eventId } = useParams();
-
-  console.log("EVENT", eventDetails);
-  console.log("ID", eventId);
-
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -23,31 +19,12 @@ export default function OneEvent() {
       .catch((error) => console.log(error));
   }, [eventId]);
 
-  //   const fetchEvent = async () => {
-  //     try {
-  //       const response = await fetch(`http://localhost:5005/event/${eventId}`);
-  //       console.log('RESPONSE', response)
-  //       if (response.status === 200) {
-  //         const parsed = await response.json();
-  //         setEventDetails(parsed);
-  //       }
-  //     } catch (error) {
-  //       console.log(error);
-  //     }
-  //   };
-
-  //  useEffect(() => {
-  //      fetchEvent();
-  //    }, [eventId]);
-
   const handleDelete = async () => {
     try {
       const response = await axios.delete(
         `http://localhost:5005/event/${eventId}`
       );
-      console.log("DELETE", response.status);
-
-      if (response === 200) {
+      if (response.status === 200) {
         navigate("/event-my");
       }
     } catch (error) {
