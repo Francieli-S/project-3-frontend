@@ -7,7 +7,9 @@ export default function MyEvents() {
 
   const axiosData = async () => {
     try {
-      const response = await axios.get('http://localhost:5005/event/all-events');
+      const response = await axios.get(
+        'http://localhost:5005/event/all-events'
+      );
       if (response.status === 200) {
         setMyEvents(response.data);
       }
@@ -22,12 +24,11 @@ export default function MyEvents() {
 
   return (
     <>
-      {myEvents.map(event => (
+      {myEvents.map((event) => (
         <div key={event._id}>
-        <Link to={`/event-one/${event._id}`}>{event.title}</Link>
+          <Link to={`/event-one/${event._id}`}>{event.title}</Link>
         </div>
       ))}
     </>
-
-  )
+  );
 }
