@@ -13,7 +13,6 @@ export default function OneEvent() {
     axios
       .get(`http://localhost:5005/event/${eventId}`)
       .then((response) => {
-        console.log("ONE", response.status);
         setEventDetails(response.data);
       })
       .catch((error) => console.log(error));

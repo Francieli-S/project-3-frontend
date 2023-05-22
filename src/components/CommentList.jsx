@@ -1,10 +1,12 @@
 import axios from "axios";
-import React, { useEffect, useState } from "react";
-import { useNavigate, useParams } from "react-router-dom";
+import { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 function CommentList() {
   const [commentDetails, setCommentDetails] = useState([]);
+  const [refresh, setRefresh] = useState(false)
   const navigate = useNavigate;
+
   const commentData = async () => {
     try {
       const response = await axios.get(
@@ -27,6 +29,7 @@ function CommentList() {
         `http://localhost:5005/comment/${commentId}`
       );
       if (response.status === 200) {
+        setRefresh(!refresh)
         navigate("/event-my");
       }
     } catch (error) {
@@ -34,11 +37,16 @@ function CommentList() {
     }
   };
 
+  useEffect(() => {
+    commentData();
+  }, [refresh]);
+  
+
   return commentDetails ? (
     <>
       {commentDetails.map((comment) => (
         <div key={comment._id}>
-          <p>{comment.text}</p>
+          <p>{comment.comment}</p>
           <button type="button" onClick={() => handleDelete(comment._id)}>
             Delete
           </button>
