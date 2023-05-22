@@ -1,16 +1,14 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
+import CreateComment from "../pages/CreateComment";
 
-function CommentList() {
+function CommentList({eventId}) {
   const [commentDetails, setCommentDetails] = useState([]);
-  const [refresh, setRefresh] = useState(false)
-  const navigate = useNavigate;
 
   const commentData = async () => {
     try {
       const response = await axios.get(
-        "http://localhost:5005/comment/all-comments"
+          `http://localhost:5005/comment/all-comments/${eventId}`
       );
       if (response.status === 200) {
         setCommentDetails(response.data);
@@ -25,25 +23,26 @@ function CommentList() {
 
   const handleDelete = async (commentId) => {
     try {
+      console.log(commentDetails)
       const response = await axios.delete(
         `http://localhost:5005/comment/${commentId}`
       );
       if (response.status === 200) {
-        setRefresh(!refresh)
-        navigate("/event-my");
-      }
+        const filteredComments = commentDetails.filter(comment => {
+          if (comment._id !== commentId) {
+            return comment
+          }
+        })
+        setCommentDetails(filteredComments)
+             }
     } catch (error) {
       console.log(error);
     }
   };
 
-  useEffect(() => {
-    commentData();
-  }, [refresh]);
-  
-
   return commentDetails ? (
     <>
+    <h3>Hello</h3>
       {commentDetails.map((comment) => (
         <div key={comment._id}>
           <p>{comment.comment}</p>
@@ -52,6 +51,7 @@ function CommentList() {
           </button>
         </div>
       ))}
+      <CreateComment eventId={eventId} commentDetails={commentDetails} setCommentDetails={setCommentDetails}/>
     </>
   ) : (
     <p>Loading comments...</p>

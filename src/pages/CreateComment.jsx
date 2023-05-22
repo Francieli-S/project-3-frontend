@@ -1,9 +1,7 @@
 import { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 
-export default function CreateComment({ eventId }) {
-  const navigate = useNavigate();
+export default function CreateComment({ eventId, commentDetails, setCommentDetails }) {
   const [comment, setComment] = useState('');
 
   const handleSubmit = (e) => {
@@ -16,10 +14,10 @@ export default function CreateComment({ eventId }) {
 
     axios
       .post('http://localhost:5005/comment/new-comment', body)
-      .then(() => {
+      .then((response) => {
+        console.log('CREATED COMMENT', response.data, commentDetails)
         setComment('');
-
-        navigate(`/event-one/${eventId}`);
+        setCommentDetails([response.data, ...commentDetails])      
       })
       .catch((error) => {
         console.log(error);
@@ -38,6 +36,7 @@ export default function CreateComment({ eventId }) {
         />
         <button type='submit'>Add Comment!</button>
       </form>
+      
     </div>
   );
 }
