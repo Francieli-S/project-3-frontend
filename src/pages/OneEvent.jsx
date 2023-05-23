@@ -23,7 +23,7 @@ export default function OneEvent() {
         `http://localhost:5005/event/${eventId}`
       );
       if (response.status === 200) {
-        navigate('/event-my');
+        navigate('/event-list');
       }
     } catch (error) {
       console.log(error);

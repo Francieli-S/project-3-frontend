@@ -22,7 +22,7 @@ export default function CreateUpdateEvent({ isUpdating = false }) {
       location: location,
       genre: genre,
       details: details,
-      createdBy: { _id: userId },
+      // createdBy: { _id: userId },
     };
     console.log(body);
 
