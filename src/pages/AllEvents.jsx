@@ -6,6 +6,8 @@ export default function AllEvents() {
   const [events, setEvents] = useState([]);
   const [searchTerm, setSearchTerm] = useState('');
   const [genreBlues, setGenreBlues] = useState(false)
+  const [genreRock, setGenreRock] = useState(false)
+  const [genreFolk, setGenreFolk] = useState(false)
 
   const axiosEvents = async (searchTerm = '') => {
     try {
@@ -15,6 +17,12 @@ export default function AllEvents() {
       }
       if (genreBlues) {
         endpoint += 'blues=true&'
+      }
+      if (genreRock) {
+        endpoint += 'rock=true&'
+      }
+      if (genreFolk) {
+        endpoint += 'folk=true&'
       }
       const response = await axios.get(endpoint);
       if (response.status === 200) {
@@ -31,7 +39,7 @@ export default function AllEvents() {
 
   useEffect(() => {
     axiosEvents(searchTerm)
-  }, [searchTerm, genreBlues])
+  }, [searchTerm, genreBlues, genreRock, genreBlues, genreFolk])
 
   return (
     <>
@@ -40,6 +48,10 @@ export default function AllEvents() {
         {/* <button>Search</button> */}
     <label>Blues</label>    
     <input type='checkbox' checked={genreBlues} onChange={e => setGenreBlues(e.target.checked)} />
+    <label>Rock</label>    
+    <input type='checkbox' checked={genreRock} onChange={e => setGenreRock(e.target.checked)} />
+    <label>Folk</label>    
+    <input type='checkbox' checked={genreFolk} onChange={e => setGenreFolk(e.target.checked)} />
       {events.map((event) => (
         <div key={event._id}>
           <Link to={`/event-one/${event._id}`}>{event.title}</Link>
