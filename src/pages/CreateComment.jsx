@@ -17,7 +17,7 @@ export default function CreateComment({
     console.log(body);
 
     axios
-      .post('http://localhost:5005/comment/new-comment', body)
+      .post(`${import.meta.env.VITE_BASE_API_URL}/comment/new-comment`, body)
       .then((response) => {
         console.log('CREATED COMMENT', response.data, commentDetails);
         setComment('');

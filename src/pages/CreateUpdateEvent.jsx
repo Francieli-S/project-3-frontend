@@ -28,7 +28,7 @@ export default function CreateUpdateEvent({ isUpdating = false }) {
 
     !isUpdating
       ? axios
-          .post("http://localhost:5005/event/create", body)
+          .post(`${import.meta.env.VITE_BASE_API_URL}/event/create`, body)
           .then((response) => {
             const newEventId = response.data._id;
             setTitle("");
@@ -43,7 +43,7 @@ export default function CreateUpdateEvent({ isUpdating = false }) {
             console.log(error);
           })
       : axios
-          .put(`http://localhost:5005/event/${eventId}`, body)
+          .put(`${import.meta.env.VITE_BASE_API_URL}/event/${eventId}`, body)
           .then(() => {
             setTitle("");
             setDate("");
@@ -62,7 +62,7 @@ export default function CreateUpdateEvent({ isUpdating = false }) {
   const axiosEvent = async () => {
     try {
       const response = await axios.get(
-        `http://localhost:5005/event/${eventId}`
+        `${import.meta.env.VITE_BASE_API_URL}/event/${eventId}`
       );
       if (response.status === 200) {
         const event = response.data;

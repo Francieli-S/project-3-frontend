@@ -10,7 +10,7 @@ export default function OneEvent() {
 
   useEffect(() => {
     axios
-      .get(`http://localhost:5005/event/${eventId}`)
+      .get(`${import.meta.env.VITE_BASE_API_URL}/event/${eventId}`)
       .then((response) => {
         setEventDetails(response.data);
       })
@@ -20,7 +20,7 @@ export default function OneEvent() {
   const handleDelete = async () => {
     try {
       const response = await axios.delete(
-        `http://localhost:5005/event/${eventId}`
+        `${import.meta.env.VITE_BASE_API_URL}/event/${eventId}`
       );
       if (response.status === 200) {
         navigate('/event-list');

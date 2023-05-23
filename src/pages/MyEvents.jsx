@@ -9,7 +9,7 @@ export default function MyEvents() {
   const axiosEvents = async () => {
     try {
       const response = await axios.get(
-        `http://localhost:5005/event/all-events/${userId}`
+        `${import.meta.env.VITE_BASE_API_URL}/event/all-events/${userId}`
       );
       if (response.status === 200) {
         setMyEvents(response.data);

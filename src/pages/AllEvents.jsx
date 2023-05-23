@@ -11,7 +11,7 @@ export default function AllEvents() {
 
   const axiosEvents = async (searchTerm = '') => {
     try {
-      let endpoint = 'http://localhost:5005/event/all-events?'
+      let endpoint = `${import.meta.env.VITE_BASE_API_URL}/event/all-events?`
       if (searchTerm) {
         endpoint += `search=${searchTerm}&`
       }

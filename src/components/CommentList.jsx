@@ -8,7 +8,7 @@ function CommentList({ eventId }) {
   const commentData = async () => {
     try {
       const response = await axios.get(
-        `http://localhost:5005/comment/all-comments/${eventId}`
+        `${import.meta.env.VITE_BASE_API_URL}/comment/all-comments/${eventId}`
       );
       if (response.status === 200) {
         setCommentDetails(response.data);
@@ -25,7 +25,7 @@ function CommentList({ eventId }) {
     try {
       console.log(commentDetails);
       const response = await axios.delete(
-        `http://localhost:5005/comment/${commentId}`
+        `${import.meta.env.VITE_BASE_API_URL}/comment/${commentId}`
       );
       if (response.status === 200) {
         const filteredComments = commentDetails.filter((comment) => {
