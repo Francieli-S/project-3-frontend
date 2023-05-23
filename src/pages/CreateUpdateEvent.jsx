@@ -1,40 +1,41 @@
-import { useEffect, useState } from 'react';
-import { Link, useNavigate, useParams } from 'react-router-dom';
-import axios from 'axios';
+import { useEffect, useState } from "react";
+import { Link, useNavigate, useParams } from "react-router-dom";
+import axios from "axios";
 
 export default function CreateUpdateEvent({ isUpdating = false }) {
   const navigate = useNavigate();
 
   // in case isUpdating = true
-  const { eventId } = useParams();
+  const { eventId, userId } = useParams();
 
-  const [title, setTitle] = useState('');
-  const [date, setDate] = useState('');
-  const [location, setLocation] = useState('');
-  const [genre, setGenre] = useState('');
-  const [details, setDetails] = useState('');
+  const [title, setTitle] = useState("");
+  const [date, setDate] = useState("");
+  const [location, setLocation] = useState("");
+  const [genre, setGenre] = useState("");
+  const [details, setDetails] = useState("");
 
   const handleSubmit = (e) => {
     e.preventDefault();
     const body = {
-      title,
-      date,
-      location,
-      genre,
-      details,
+      title: title,
+      date: date,
+      location: location,
+      genre: genre,
+      details: details,
+      createdBy: { _id: userId },
     };
     console.log(body);
 
     !isUpdating
       ? axios
-          .post('http://localhost:5005/event/create', body)
+          .post("http://localhost:5005/event/create", body)
           .then((response) => {
-            const newEventId = response.data._id
-            setTitle('');
-            setDate('');
-            setLocation('');
-            setGenre('');
-            setDetails('');
+            const newEventId = response.data._id;
+            setTitle("");
+            setDate("");
+            setLocation("");
+            setGenre("");
+            setDetails("");
 
             navigate(`/event-one/${newEventId}`);
           })
@@ -44,18 +45,18 @@ export default function CreateUpdateEvent({ isUpdating = false }) {
       : axios
           .put(`http://localhost:5005/event/${eventId}`, body)
           .then(() => {
-            setTitle('');
-            setDate('');
-            setLocation('');
-            setGenre('');
-            setDetails('');
+            setTitle("");
+            setDate("");
+            setLocation("");
+            setGenre("");
+            setDetails("");
 
             navigate(`/event-one/${eventId}`);
           })
           .catch((error) => {
             console.log(error);
           });
-    console.log('submit');
+    console.log("submit");
   };
 
   const axiosEvent = async () => {
@@ -84,9 +85,9 @@ export default function CreateUpdateEvent({ isUpdating = false }) {
 
   return (
     <div>
-      <Link to={'/'}>Home</Link>
-      <h1>{isUpdating ? 'Update event' : 'Create event'}</h1>
-      <form style={{ display: 'grid' }} onSubmit={handleSubmit}>
+      <Link to={"/"}>Home</Link>
+      <h1>{isUpdating ? "Update event" : "Create event"}</h1>
+      <form style={{ display: "grid" }} onSubmit={handleSubmit}>
         <label>Title</label>
         <input
           value={title}
@@ -122,7 +123,7 @@ export default function CreateUpdateEvent({ isUpdating = false }) {
             setDetails(e.target.value);
           }}
         />
-        <button type='submit'>{isUpdating ? 'Update' : 'Create'}</button>
+        <button type="submit">{isUpdating ? "Update" : "Create"}</button>
       </form>
     </div>
   );

@@ -1,14 +1,15 @@
-import axios from 'axios';
-import { useEffect, useState } from 'react';
-import { Link } from 'react-router-dom';
+import axios from "axios";
+import { useEffect, useState } from "react";
+import { Link, useParams } from "react-router-dom";
 
 export default function MyEvents() {
   const [myEvents, setMyEvents] = useState([]);
+  const { userId } = useParams();
 
   const axiosData = async () => {
     try {
       const response = await axios.get(
-        'http://localhost:5005/event/all-events'
+        `http://localhost:5005/event/all-events/${userId}`
       );
       if (response.status === 200) {
         setMyEvents(response.data);

@@ -2,13 +2,13 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 import CreateComment from "../pages/CreateComment";
 
-function CommentList({eventId}) {
+function CommentList({ eventId }) {
   const [commentDetails, setCommentDetails] = useState([]);
 
   const commentData = async () => {
     try {
       const response = await axios.get(
-          `http://localhost:5005/comment/all-comments/${eventId}`
+        `http://localhost:5005/comment/all-comments/${eventId}`
       );
       if (response.status === 200) {
         setCommentDetails(response.data);
@@ -23,18 +23,18 @@ function CommentList({eventId}) {
 
   const handleDelete = async (commentId) => {
     try {
-      console.log(commentDetails)
+      console.log(commentDetails);
       const response = await axios.delete(
         `http://localhost:5005/comment/${commentId}`
       );
       if (response.status === 200) {
-        const filteredComments = commentDetails.filter(comment => {
+        const filteredComments = commentDetails.filter((comment) => {
           if (comment._id !== commentId) {
-            return comment
+            return comment;
           }
-        })
-        setCommentDetails(filteredComments)
-             }
+        });
+        setCommentDetails(filteredComments);
+      }
     } catch (error) {
       console.log(error);
     }
@@ -42,7 +42,7 @@ function CommentList({eventId}) {
 
   return commentDetails ? (
     <>
-    <h3>Hello</h3>
+      <h3>Hello</h3>
       {commentDetails.map((comment) => (
         <div key={comment._id}>
           <p>{comment.comment}</p>
@@ -51,7 +51,11 @@ function CommentList({eventId}) {
           </button>
         </div>
       ))}
-      <CreateComment eventId={eventId} commentDetails={commentDetails} setCommentDetails={setCommentDetails}/>
+      <CreateComment
+        eventId={eventId}
+        commentDetails={commentDetails}
+        setCommentDetails={setCommentDetails}
+      />
     </>
   ) : (
     <p>Loading comments...</p>
