@@ -1,23 +1,38 @@
-import { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 export default function Signup() {
-  const navigate = useNavigate()
+  const navigate = useNavigate();
 
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [emailErrors, setEmailErrors] = useState();
+  const [passwordErrors, setPasswordErrors] = useState();
 
-  const handleSubmit = async e => {
-    e.preventDefault()
-    const response = await fetch('http://localhost:5005/auth/signup', {
-      method: 'POST', 
-      headers: {
-        'Content-Type': 'application/json'
-      }, body: JSON.stringify({email, password})
-    })
-    console.log('hello')
-    response.status === 201 && navigate('/login')
-  }
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    try {
+      const response = await fetch("http://localhost:5005/auth/signup", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ email, password }),
+      });
+      const parsed = await response.json();
+      console.log(parsed);
+      if (response.status === 402) {
+        setEmailErrors(parsed.message);
+        console.log(response.error);
+      }
+      if (response.status === 401) {
+        setPasswordErrors(parsed.message);
+      }
+      response.status === 201 && navigate("/login");
+    } catch (err) {
+      console.log(err);
+    }
+  };
 
   return (
     <div>
@@ -26,18 +41,20 @@ export default function Signup() {
         <label>Email:</label>
         <input
           required
-          type='email'
+          type="email"
           value={email}
           onChange={(e) => setEmail(e.target.value)}
         />
+        {emailErrors && <p>{emailErrors}</p>}
         <label>Password:</label>
         <input
           required
-          type='password'
+          type="password"
           value={password}
           onChange={(e) => setPassword(e.target.value)}
         />
-        <button type='submit'>Sign Up</button>
+        {passwordErrors && <p>{passwordErrors}</p>}
+        <button type="submit">Sign Up</button>
       </form>
     </div>
   );
