@@ -1,7 +1,11 @@
 import { useState } from 'react';
 import axios from 'axios';
 
-export default function CreateComment({ eventId, commentDetails, setCommentDetails }) {
+export default function CreateComment({
+  eventId,
+  commentDetails,
+  setCommentDetails,
+}) {
   const [comment, setComment] = useState('');
 
   const handleSubmit = (e) => {
@@ -15,9 +19,9 @@ export default function CreateComment({ eventId, commentDetails, setCommentDetai
     axios
       .post('http://localhost:5005/comment/new-comment', body)
       .then((response) => {
-        console.log('CREATED COMMENT', response.data, commentDetails)
+        console.log('CREATED COMMENT', response.data, commentDetails);
         setComment('');
-        setCommentDetails([response.data, ...commentDetails])      
+        setCommentDetails([response.data, ...commentDetails]);
       })
       .catch((error) => {
         console.log(error);
@@ -36,7 +40,6 @@ export default function CreateComment({ eventId, commentDetails, setCommentDetai
         />
         <button type='submit'>Add Comment!</button>
       </form>
-      
     </div>
   );
 }

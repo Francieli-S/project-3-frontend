@@ -29,7 +29,7 @@ export default function CreateUpdateEvent({ isUpdating = false }) {
       ? axios
           .post('http://localhost:5005/event/create', body)
           .then((response) => {
-            const newEventId = response.data._id
+            const newEventId = response.data._id;
             setTitle('');
             setDate('');
             setLocation('');

@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom';
 export default function MyEvents() {
   const [myEvents, setMyEvents] = useState([]);
 
-  const axiosData = async () => {
+  const axiosEvents = async () => {
     try {
       const response = await axios.get(
         'http://localhost:5005/event/all-events'
@@ -19,7 +19,7 @@ export default function MyEvents() {
   };
 
   useEffect(() => {
-    axiosData();
+    axiosEvents();
   }, []);
 
   return (

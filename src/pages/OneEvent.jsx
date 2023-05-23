@@ -1,6 +1,6 @@
-import { useState, useEffect } from "react";
-import { Link, useNavigate, useParams } from "react-router-dom";
-import axios from "axios";
+import { useState, useEffect } from 'react';
+import { Link, useNavigate, useParams } from 'react-router-dom';
+import axios from 'axios';
 import CommentList from '../components/CommentList';
 
 export default function OneEvent() {
@@ -23,7 +23,7 @@ export default function OneEvent() {
         `http://localhost:5005/event/${eventId}`
       );
       if (response.status === 200) {
-        navigate("/event-my");
+        navigate('/event-my');
       }
     } catch (error) {
       console.log(error);
@@ -43,11 +43,10 @@ export default function OneEvent() {
       <h3>Details</h3>
       <p>{eventDetails.details}</p>
       <Link to={`/event-update/${eventId}`}>Update</Link>
-      <button type="button" onClick={handleDelete}>
+      <button type='button' onClick={handleDelete}>
         Delete
       </button>
-      <CommentList eventId={eventId}/>
-      
+      <CommentList eventId={eventId} />
     </div>
   ) : (
     <h1>Loading...</h1>
