@@ -1,6 +1,6 @@
-import axios from 'axios';
-import { useEffect, useState } from 'react';
-import CreateComment from '../pages/CreateComment';
+import axios from "axios";
+import { useEffect, useState } from "react";
+import CreateComment from "../pages/CreateComment";
 
 function CommentList({ eventId }) {
   const [commentDetails, setCommentDetails] = useState([]);
@@ -46,7 +46,7 @@ function CommentList({ eventId }) {
       {commentDetails.map((comment) => (
         <div key={comment._id}>
           <p>{comment.comment}</p>
-          <button type='button' onClick={() => handleDelete(comment._id)}>
+          <button type="button" onClick={() => handleDelete(comment._id)}>
             Delete
           </button>
         </div>
