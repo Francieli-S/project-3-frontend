@@ -1,4 +1,100 @@
-#root {
+body {
+  margin: 0;
+  min-width: 320px;
+  min-height: 100vh;
+  font-family: 'Poppins', sans-serif;
+  font-size: 18px;
+}
+
+.navbar {
+  background-color: #FF4000;
+  display: flex;
+  justify-content: space-between;
+}
+
+.logo {
+  width: 80px;
+  height: 50px;
+  border-radius: 3px;
+  margin: 10px 10px;
+}
+
+.nav-lks {
+  display: flex;
+  flex-direction: column;
+
+}
+
+.navbar .links {
+  color: #FEEFDD;
+  font-weight: 400;
+  font-size: 0.8em;
+}
+
+.navbar .links:hover {
+  color: #201E1F;
+}
+
+.pic-size {
+  width: 130px;
+  height: 150px;
+  border-radius: 30%
+}
+
+.pic-size:hover {
+  width: 140px;
+}
+
+.links {
+  text-decoration: none;
+}
+
+button {
+  padding: 8px 20px;
+  font-family: 'Poppins', sans-serif;
+  font-size: 1em;
+  font-weight: 400;
+  border-radius: 5px;
+  border: 0px;
+  margin: 20px auto;
+  background-color: #FAAA8D;
+}
+
+button:hover {
+  background-color: #FF4000;
+}
+
+.all-pages {
+  margin: 0;
+  padding: 20px 0px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: #201E1F;
+}
+
+h1 {
+  color: #FEEFDD;
+  margin: 0px 0px;
+}
+
+.profile .links{
+  color: #FEEFDD;
+  font-weight: 200;
+
+}
+
+.profile .links:hover {
+  color: #FF4000;
+}
+
+
+
+
+
+
+
+/* #root {
   max-width: 1280px;
   margin: 0 auto;
   padding: 2rem;
@@ -39,4 +135,4 @@
 
 .read-the-docs {
   color: #888;
-}
+} */

@@ -1,17 +1,34 @@
 import { useContext } from 'react';
 import { SessionContext } from '../context/SessionContext';
-import { Link } from "react-router-dom";
-
+import { Link } from 'react-router-dom';
+import picture from '../assets/images/profile.picture.png';
+import NavBar from '../components/NavBar';
 
 export default function Profile() {
-  const {logout} = useContext(SessionContext)
+  const { logout } = useContext(SessionContext);
+
   return (
-    <div>
-      <h1>Profile</h1>
-      <Link to="/event-list">Event List</Link>
-      <Link to="/event-my">My Events</Link>
-      <Link to="/event-create">Create New Event</Link>
-      <button type='button' onClick={logout}>Log out</button>
+    <>
+    <NavBar />
+    <div className='all-pages profile'>
+      <h1>Welcome,</h1>
+      <h1>user.name</h1>
+      <div >
+      <img className='pic-size'src={picture} alt='profile picture' />
+      </div>
+      <div>
+        <Link className='links' to='/event-list'>Events</Link>
+      </div>
+      <div>
+        <Link className='links' to='/event-my'>My events</Link>
+      </div>
+      <div>
+        <Link className='links' to='/event-create'>Add an event</Link>
+      </div>
+      <button type='button' onClick={logout}>
+        Log out
+      </button>
     </div>
+    </>
   );
 }
