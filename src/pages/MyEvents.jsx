@@ -4,7 +4,7 @@ import { Link, useParams } from "react-router-dom";
 
 export default function MyEvents() {
   const [myEvents, setMyEvents] = useState([]);
-  const { userId } = useParams();
+  //const { userId } = useParams();
 
   const axiosEvents = async () => {
     try {
