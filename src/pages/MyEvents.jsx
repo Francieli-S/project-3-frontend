@@ -16,7 +16,6 @@ export default function MyEvents() {
       Authorization: `Bearer ${token}`,
     },
   };
-  console.log(config);
 
   const axiosMyEvents = async (searchTerm = "") => {
     try {
