@@ -178,9 +178,27 @@ h1 {
   margin: 10px 0;
 }
 
-/* ALL EVENTS PAGE */
+/* ALL EVENTS AND MY EVENTS PAGES */
 
+.search-bar input {
+  background-color: #FEEFDD;
+  color: #201E1F;
+  width: 120%;
+  height: 30px;
+  border: none;
+  border-radius: 3px;
+  margin: 10px 0; 
+}
 
+.checkbox label {
+  color: #FEEFDD;
+  font-weight: 200;
+}
+
+.checkbox input[type="checkbox" i] {
+  margin-right: 20px;
+
+}
 
 .events-list {
   margin: 20px;
@@ -189,6 +207,7 @@ h1 {
 .events-list .links {
   color: #FEEFDD;
   font-weight: 200;
+  font-size: 1.2em;
 }
 
 .events-list .links:hover {
@@ -203,17 +222,11 @@ h1 {
 }
 
 
-
-
-
-
-
-
 /* FOOTER */
 
 .footer {
   background-color: black;
-  height: 100px;
+  height: 200px;
 }
 
 

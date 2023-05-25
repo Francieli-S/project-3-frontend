@@ -2,6 +2,8 @@ import axios from "axios";
 import { useEffect, useState, useContext } from "react";
 import { Link, useParams } from "react-router-dom";
 import { SessionContext } from "../context/SessionContext";
+import NavBar from '../components/NavBar';
+import Footer from '../components/Footer';
 
 export default function MyEvents() {
   const [myEvents, setMyEvents] = useState([]);
@@ -53,36 +55,46 @@ export default function MyEvents() {
 
   return (
     <>
-      <label>Search</label>
-      <input
-        value={searchTerm}
-        onChange={(e) => setSearchTerm(e.target.value)}
-      />
-      {/* <button>Search</button> */}
-      <label>Blues</label>
-      <input
-        type="checkbox"
-        checked={genreBlues}
-        onChange={(e) => setGenreBlues(e.target.checked)}
-      />
-      <label>Rock</label>
-      <input
-        type="checkbox"
-        checked={genreRock}
-        onChange={(e) => setGenreRock(e.target.checked)}
-      />
-      <label>Folk</label>
-      <input
-        type="checkbox"
-        checked={genreFolk}
-        onChange={(e) => setGenreFolk(e.target.checked)}
-      />
+    <NavBar />
+      <div className='all-pages my-events'>
+        <div className='search-bar'>
+          <input
+          placeholder='seach event'
+            value={searchTerm}
+            onChange={(e) => setSearchTerm(e.target.value)}
+          />
+        </div>
+        <div className='checkbox'>
+          <label>Blues</label>
+          <input
+            type='checkbox'
+            checked={genreBlues}
+            onChange={(e) => setGenreBlues(e.target.checked)}
+          />
+          <label>Rock</label>
+          <input
+            type='checkbox'
+            checked={genreRock}
+            onChange={(e) => setGenreRock(e.target.checked)}
+          />
+          <label>Folk</label>
+          <input
+            type='checkbox'
+            checked={genreFolk}
+            onChange={(e) => setGenreFolk(e.target.checked)}
+          />
+        </div>
+        <div className='events-list'>
       {myEvents.length &&
         myEvents.map((event) => (
           <div key={event._id}>
-            <Link to={`/event-one/${event._id}`}>{event.title}</Link>
+            <Link className='links' to={`/event-one/${event._id}`}>{event.title}</Link>
+            <p>{event.date}</p>
           </div>
         ))}
+        </div>
+        </div>
+        <Footer />
     </>
   );
 }
