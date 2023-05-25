@@ -1,14 +1,25 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useContext } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import axios from 'axios';
+import { SessionContext } from "../context/SessionContext";
 import NavBar from '../components/NavBar';
 import Footer from '../components/Footer';
 
 export default function CreateUpdateEvent({ isUpdating = false }) {
+  const { token } = useContext(SessionContext);
   const navigate = useNavigate();
+  //console.log(setToken);
+  //const token = localStorage.getItem("token");
+
+  const config = {
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+  };
+  console.log(config);
 
   // in case isUpdating = true
-  const { eventId, userId } = useParams();
+  const { eventId } = useParams();
 
   const [title, setTitle] = useState('');
   const [date, setDate] = useState('');
@@ -26,13 +37,16 @@ export default function CreateUpdateEvent({ isUpdating = false }) {
       location: location,
       genre: genre,
       details: details,
-      // createdBy: { _id: userId },
     };
     console.log(body);
 
     !isUpdating
       ? axios
-          .post(`${import.meta.env.VITE_BASE_API_URL}/event/create`, body)
+          .post(
+            `${import.meta.env.VITE_BASE_API_URL}/event/create`,
+            body,
+            config
+          )
           .then((response) => {
             const newEventId = response.data._id;
             setTitle('');
