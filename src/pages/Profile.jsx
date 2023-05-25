@@ -3,6 +3,7 @@ import { SessionContext } from '../context/SessionContext';
 import { Link } from 'react-router-dom';
 import picture from '../assets/images/profile.picture.png';
 import NavBar from '../components/NavBar';
+import Footer from '../components/Footer';
 
 export default function Profile() {
   const { logout } = useContext(SessionContext);
@@ -29,6 +30,7 @@ export default function Profile() {
         Log out
       </button>
     </div>
+    <Footer />
     </>
   );
 }

@@ -1,10 +1,44 @@
+/* GENERAL STYLE */
+
 body {
   margin: 0;
   min-width: 320px;
-  min-height: 100vh;
+  /* min-height: 100vh; */
   font-family: 'Poppins', sans-serif;
   font-size: 18px;
 }
+
+.all-pages {
+  margin: 0;
+  height: 600px;
+  padding: 20px 0px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: #201E1F;
+}
+
+button {
+  padding: 8px 20px;
+  font-family: 'Poppins', sans-serif;
+  font-size: 1em;
+  font-weight: 400;
+  border-radius: 5px;
+  border: 0px;
+  margin: 20px auto;
+  background-color: #FAAA8D;
+}
+
+button:hover {
+  background-color: #FF4000;
+}
+
+h1 {
+  color: #FEEFDD;
+  margin: 0px 0px;
+}
+
+/* NAVBAR */
 
 .navbar {
   background-color: #FF4000;
@@ -35,6 +69,8 @@ body {
   color: #201E1F;
 }
 
+/* HOME - PROFILE */
+
 .pic-size {
   width: 130px;
   height: 150px;
@@ -49,47 +85,45 @@ body {
   text-decoration: none;
 }
 
-button {
-  padding: 8px 20px;
-  font-family: 'Poppins', sans-serif;
-  font-size: 1em;
-  font-weight: 400;
-  border-radius: 5px;
-  border: 0px;
-  margin: 20px auto;
-  background-color: #FAAA8D;
-}
-
-button:hover {
-  background-color: #FF4000;
-}
-
-.all-pages {
-  margin: 0;
-  padding: 20px 0px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  background-color: #201E1F;
-}
-
-h1 {
-  color: #FEEFDD;
-  margin: 0px 0px;
-}
-
 .profile .links{
   color: #FEEFDD;
   font-weight: 200;
-
 }
 
 .profile .links:hover {
   color: #FF4000;
 }
 
+/* CREATE UPDATE PAGE */
 
+.create-update-event label {
+  color: #FEEFDD;
+  font-weight: 200;
+}
 
+.create-update-event form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.create-update-event input {
+  background-color: #FEEFDD;
+  color: #201E1F;
+  width: 120%;
+  height: 25px;
+  border: none;
+  border-radius: 3px;
+  margin: 10px 0;
+  
+}
+
+/* FOOTER */
+
+.footer {
+  background-color: black;
+  height: 100px;
+}
 
 
 
