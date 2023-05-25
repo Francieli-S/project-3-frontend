@@ -45,40 +45,43 @@ export default function AllEvents() {
 
   return (
     <>
-    <NavBar />
-    <div className='all-pages'>
-      <div>
-        <label>Search</label>
-        <input
-          value={searchTerm}
-          onChange={(e) => setSearchTerm(e.target.value)}
-        />
-      </div>
-      <div>
-        <label>Blues</label>
-        <input
-          type='checkbox'
-          checked={genreBlues}
-          onChange={(e) => setGenreBlues(e.target.checked)}
-        />
-        <label>Rock</label>
-        <input
-          type='checkbox'
-          checked={genreRock}
-          onChange={(e) => setGenreRock(e.target.checked)}
-        />
-        <label>Folk</label>
-        <input
-          type='checkbox'
-          checked={genreFolk}
-          onChange={(e) => setGenreFolk(e.target.checked)}
-        />
-      </div>
-      {events.map((event) => (
-        <div key={event._id}>
-          <Link to={`/event-one/${event._id}`}>{event.title}</Link>
+      <NavBar />
+      <div className='all-pages all-events'>
+        <div className='search-bar'>
+          <input
+          placeholder='seach event'
+            value={searchTerm}
+            onChange={(e) => setSearchTerm(e.target.value)}
+          />
         </div>
-      ))}
+        <div className='checkbox'>
+          <label>Blues</label>
+          <input
+            type='checkbox'
+            checked={genreBlues}
+            onChange={(e) => setGenreBlues(e.target.checked)}
+          />
+          <label>Rock</label>
+          <input
+            type='checkbox'
+            checked={genreRock}
+            onChange={(e) => setGenreRock(e.target.checked)}
+          />
+          <label>Folk</label>
+          <input
+            type='checkbox'
+            checked={genreFolk}
+            onChange={(e) => setGenreFolk(e.target.checked)}
+          />
+        </div>
+        <div className='events-list'>
+          {events.map((event) => (
+            <div key={event._id}>
+              <Link className='links' to={`/event-one/${event._id}`}>{event.title}</Link>
+              <p>{event.date}</p>
+            </div>
+          ))}
+        </div>
       </div>
       <Footer />
     </>
