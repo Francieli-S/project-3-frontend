@@ -2,6 +2,8 @@ import { useState, useEffect } from 'react';
 import { Link, useNavigate, useParams } from 'react-router-dom';
 import axios from 'axios';
 import CommentList from '../components/CommentList';
+import NavBar from '../components/NavBar';
+import Footer from '../components/Footer';
 
 export default function OneEvent() {
   const [eventDetails, setEventDetails] = useState();
@@ -31,23 +33,26 @@ export default function OneEvent() {
   };
 
   return eventDetails ? (
-    <div>
-      <h3>Title</h3>
-      <p>{eventDetails.title}</p>
-      <h3>Date</h3>
-      <p>{eventDetails.date}</p>
-      <h3>Location</h3>
-      <p>{eventDetails.location}</p>
-      <h3>Genre</h3>
-      <p>{eventDetails.genre}</p>
-      <h3>Details</h3>
-      <p>{eventDetails.details}</p>
-      <Link to={`/event-update/${eventId}`}>Update</Link>
-      <button type='button' onClick={handleDelete}>
-        Delete
-      </button>
-      <CommentList eventId={eventId} />
-    </div>
+    <>
+      <NavBar />
+      <div className='all-pages one-event'>
+        <div className='events'>
+          <h1>{eventDetails.title}</h1>
+          <h3>{eventDetails.date}</h3>
+          <h3>{eventDetails.location}</h3>
+          <h3>Genre: <span>{eventDetails.genre}</span></h3>
+          <h3>Details: <span>{eventDetails.details}</span></h3>
+          <Link className='links one-event-lks' to={`/event-update/${eventId}`}>Update</Link>
+          <button type='button' onClick={handleDelete}>
+            Delete
+          </button>
+        </div>
+        <div className='comments'>
+          <CommentList eventId={eventId} />
+        </div>
+      </div>
+      <Footer />
+    </>
   ) : (
     <h1>Loading...</h1>
   );

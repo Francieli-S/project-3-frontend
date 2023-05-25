@@ -29,16 +29,23 @@ export default function CreateComment({
   };
 
   return (
-    <div>
-      <form style={{ display: 'grid' }} onSubmit={handleSubmit}>
+    <div className='create-comment'>
+    
+      <form onSubmit={handleSubmit}>
+      <div>
         <label></label>
-        <input
+        <textarea
+        placeholder='comment'
+        type='textArea'
           value={comment}
           onChange={(e) => {
             setComment(e.target.value);
           }}
         />
+        </div>
+        <div>
         <button type='submit'>Add Comment!</button>
+        </div>
       </form>
     </div>
   );

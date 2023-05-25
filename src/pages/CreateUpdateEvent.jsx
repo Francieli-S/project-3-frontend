@@ -136,15 +136,8 @@ export default function CreateUpdateEvent({ isUpdating = false }) {
             <option>Choose one</option>
             {genreOption.map((genre, index) => (
               <option key={index} value={genre}>{genre}</option>
-            ))}
-            
-          </select>
-          {/* <input
-            value={genre}
-            onChange={(e) => {
-              setGenre(e.target.value);
-            }}
-          /> */}
+            ))}    
+          </select>        
           <label>Details</label>
           <input
             value={details}
