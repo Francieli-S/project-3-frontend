@@ -1,5 +1,6 @@
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
+import Footer from "../components/Footer";
 
 export default function Signup() {
   const navigate = useNavigate();
@@ -12,13 +13,16 @@ export default function Signup() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const response = await fetch(`${import.meta.env.VITE_BASE_API_URL}/auth/signup`, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({ email, password }),
-      });
+      const response = await fetch(
+        `${import.meta.env.VITE_BASE_API_URL}/auth/signup`,
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({ email, password }),
+        }
+      );
       const parsed = await response.json();
       console.log(parsed);
       if (response.status === 402) {
@@ -35,27 +39,46 @@ export default function Signup() {
   };
 
   return (
-    <div>
-      <h1>Signup</h1>
-      <form encType="multipart/form-data" onSubmit={handleSubmit}>
-        <label>Email:</label>
-        <input
-          required
-          type="email"
-          value={email}
-          onChange={(e) => setEmail(e.target.value)}
-        />
-        {emailErrors && <p>{emailErrors}</p>}
-        <label>Password:</label>
-        <input
-          required
-          type="password"
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}
-        />
-        {passwordErrors && <p>{passwordErrors}</p>}
-        <button type="submit">Sign Up</button>
-      </form>
-    </div>
+    <>
+      <div className="auth-page">
+        <h1>Sign Up</h1>
+        <form
+          className="auth-form"
+          encType="multipart/form-data"
+          onSubmit={handleSubmit}
+        >
+          <div>
+            <label>Email:</label>
+            <input
+              required
+              type="email"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+            />
+            {emailErrors && <p>{emailErrors}</p>}
+          </div>
+          <div>
+            <label>Password:</label>
+            <input
+              required
+              type="password"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+            />
+            {passwordErrors && <p>{passwordErrors}</p>}
+          </div>
+          <div>
+            <button type="submit">Sign Up</button>
+          </div>
+        </form>
+        <p>
+          Already have an account? Log in{" "}
+          <Link className="links" to="/login">
+            here
+          </Link>
+        </p>
+      </div>
+      <Footer />
+    </>
   );
 }

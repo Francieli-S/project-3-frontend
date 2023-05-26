@@ -1,12 +1,12 @@
-import { useState } from 'react';
-import axios from 'axios';
+import { useState } from "react";
+import axios from "axios";
 
 export default function CreateComment({
   eventId,
   commentDetails,
   setCommentDetails,
 }) {
-  const [comment, setComment] = useState('');
+  const [comment, setComment] = useState("");
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -19,8 +19,8 @@ export default function CreateComment({
     axios
       .post(`${import.meta.env.VITE_BASE_API_URL}/comment/new-comment`, body)
       .then((response) => {
-        console.log('CREATED COMMENT', response.data, commentDetails);
-        setComment('');
+        console.log("CREATED COMMENT", response.data, commentDetails);
+        setComment("");
         setCommentDetails([response.data, ...commentDetails]);
       })
       .catch((error) => {
@@ -29,22 +29,22 @@ export default function CreateComment({
   };
 
   return (
-    <div className='create-comment'>
-    
+    <div className="create-comment">
       <form onSubmit={handleSubmit}>
-      <div>
-        <label></label>
-        <textarea
-        placeholder='comment'
-        type='textArea'
-          value={comment}
-          onChange={(e) => {
-            setComment(e.target.value);
-          }}
-        />
+        <div>
+          <label></label>
+          <textarea
+            required
+            placeholder="comment"
+            type="textArea"
+            value={comment}
+            onChange={(e) => {
+              setComment(e.target.value);
+            }}
+          />
         </div>
         <div>
-        <button type='submit'>Add Comment!</button>
+          <button type="submit">Add Comment!</button>
         </div>
       </form>
     </div>
