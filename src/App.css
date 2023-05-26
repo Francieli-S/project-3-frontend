@@ -10,7 +10,7 @@ body {
 
 .all-pages {
   margin: 0;
-  height: 775px;
+  min-height: 610px;
   padding: 20px 0px;
   display: flex;
   flex-direction: column;
@@ -23,7 +23,7 @@ button {
   font-family: 'Poppins', sans-serif;
   font-size: 1em;
   font-weight: 400;
-  border-radius: 5px;
+  border-radius: 6px;
   border: 0px;
   margin: 20px auto;
   background-color: #FAAA8D;
@@ -226,7 +226,7 @@ h1 {
 
 .footer {
   background: black;
-  height: 100px;
+  height: 125px;
   color: white;
 }
 
