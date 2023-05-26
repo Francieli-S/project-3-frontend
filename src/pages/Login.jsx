@@ -67,7 +67,7 @@ export default function Login() {
             {logPassError && <p>{logPassError}</p>}
           </div>
           <div>
-            <button type="submit">Login</button>
+            <button className='button-border-margin' type="submit">Login</button>
           </div>
         </form>
       </div>

@@ -146,7 +146,7 @@ export default function CreateUpdateEvent({ isUpdating = false }) {
               setDetails(e.target.value);
             }}
           />
-          <button type='submit'>{isUpdating ? 'Update' : 'Save'}</button>
+          <button className='button-border-margin' type='submit'>{isUpdating ? 'Update' : 'Save'}</button>
         </form>
       </div>
       <Footer />

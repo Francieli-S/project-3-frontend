@@ -51,7 +51,7 @@ export default function Profile() {
       <div>
         <Link className='links' to='/event-create'>Add an event</Link>
       </div>
-      <button type='button' onClick={logout}>
+      <button className='button-border-margin' type='button' onClick={logout}>
         Log out
       </button>
     </div>

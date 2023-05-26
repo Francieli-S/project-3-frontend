@@ -35,7 +35,7 @@ export default function UpdateUser() {
         <label>Picture</label>
         <input type='file' accept='image/jpg, image/png' name='image' />
         <div>
-        <button type='submit'>Save</button>
+        <button className='button-border-margin' type='submit'>Save</button>
         </div>
       </form>
       </div>

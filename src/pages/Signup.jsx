@@ -68,7 +68,7 @@ export default function Signup() {
             {passwordErrors && <p>{passwordErrors}</p>}
           </div>
           <div>
-            <button type="submit">Sign Up</button>
+            <button className='button-border-margin' type="submit">Sign Up</button>
           </div>
         </form>
         <p>

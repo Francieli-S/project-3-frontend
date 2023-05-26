@@ -10,7 +10,7 @@ body {
 
 .all-pages {
   margin: 0;
-  min-height: 610px;
+  min-height: 700px;
   padding: 20px 0px;
   display: flex;
   flex-direction: column;
@@ -36,7 +36,7 @@ button {
 
 button:hover {
   background-color: #FF4000;
-}
+
 
 h1 {
   color: #FEEFDD;
@@ -231,7 +231,7 @@ h1 {
 
 .footer {
   background: black;
-  height: 135px;
+  height: 150px;
   color: white;
 }
 
