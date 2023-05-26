@@ -260,6 +260,27 @@ h1 {
 .auth-page .links:visited {
   color: #feefdd;
 }
+
+.signup-login input {
+  background-color: #feefdd;
+  border: none;
+  border-radius: 3px;
+  height: 30px;
+  margin-top: 10px;
+}
+
+.signup-login .form-signup-login {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin-top: 20px;
+}
+
+.signup-login .links:hover {
+  color: #FF4000;
+}
+
 /* LOGIN PAGE */
 
 .auth-form {
@@ -268,5 +289,37 @@ h1 {
   align-items: center;
   justify-content: center;
 }
+
+/* UPDATE PICTURE PAGE */
+
+.update-user {
+  display: flex;
+  flex-direction: column;
+  align-content: center;
+}
+
+.update-user form {
+  margin-top: 20px;
+}
+
+.update-user label {
+  margin-right: 10px;
+  color: #FEEFDD;
+  font-weight: 400;
+  font-size: 1.2em ;
+}
+
+.update-user input {
+  color: #FEEFDD;
+  font-weight: 200;
+}
+
+.update-user button {
+display: flex;
+margin-top: 80px;
+}
+
+
+
 
 

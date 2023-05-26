@@ -43,11 +43,11 @@ export default function Login() {
 
   return (
     <>
-      <div className="auth-page">
+      <div className="auth-page signup-login">
         <h1>Log In</h1>
         <form className="auth-form" onSubmit={handleSubmit}>
-          <div>
-            <label>Email:</label>
+          <div className='form-signup-login'>
+            <label>Email</label>
             <input
               required
               type="email"
@@ -56,8 +56,8 @@ export default function Login() {
             />
             {logEmailError && <p>{logEmailError}</p>}
           </div>
-          <div>
-            <label>Password:</label>
+          <div className='form-signup-login'>
+            <label>Password</label>
             <input
               required
               type="password"
