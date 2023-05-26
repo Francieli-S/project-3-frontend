@@ -10,14 +10,14 @@ export default function Home() {
           <img className="homescreen-logo" src={logo2} alt="profile picture" />
         </div>
         <div>
-          <button>
+          <button className='button-border-margin'>
             <Link className="home-links" to="/signup">
               Sign up
             </Link>
           </button>
         </div>
         <div>
-          <button>
+          <button className='button-border-margin'>
             <Link className="home-links" to="/login">
               Log in
             </Link>
