@@ -44,7 +44,7 @@ export default function CreateComment({
           />
         </div>
         <div>
-          <button type="submit">Add Comment!</button>
+          <button className='button-border-margin' type="submit">Add Comment!</button>
         </div>
       </form>
     </div>

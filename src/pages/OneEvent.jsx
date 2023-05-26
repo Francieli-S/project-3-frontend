@@ -43,7 +43,7 @@ export default function OneEvent() {
           <h3>Genre: <span>{eventDetails.genre}</span></h3>
           <h3>Details: <span>{eventDetails.details}</span></h3>
           <Link className='links one-event-lks' to={`/event-update/${eventId}`}>Update</Link>
-          <button type='button' onClick={handleDelete}>
+          <button className='button-border-margin' type='button' onClick={handleDelete}>
             Delete
           </button>
         </div>

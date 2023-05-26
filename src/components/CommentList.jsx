@@ -45,7 +45,7 @@ function CommentList({ eventId }) {
       {commentDetails.map((comment) => (
         <div className='comment-list' key={comment._id}>
           <p>{comment.comment}</p>
-          <button type="button" onClick={() => handleDelete(comment._id)}>
+          <button className='button-border-margin' type="button" onClick={() => handleDelete(comment._id)}>
             Delete
           </button>
         </div>
