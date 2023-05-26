@@ -5,7 +5,7 @@ import Footer from "../components/Footer";
 export default function Home() {
   return (
     <>
-      <div className="all-pages">
+      <div className="auth-page">
         <div>
           <img className="homescreen-logo" src={logo2} alt="profile picture" />
         </div>

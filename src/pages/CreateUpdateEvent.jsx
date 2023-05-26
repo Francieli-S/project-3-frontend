@@ -16,7 +16,6 @@ export default function CreateUpdateEvent({ isUpdating = false }) {
       Authorization: `Bearer ${token}`,
     },
   };
-  console.log(config);
 
   // in case isUpdating = true
   const { eventId } = useParams();
@@ -38,8 +37,7 @@ export default function CreateUpdateEvent({ isUpdating = false }) {
       genre: genre,
       details: details,
     };
-    console.log(body);
-
+    
     !isUpdating
       ? axios
           .post(
@@ -110,6 +108,7 @@ export default function CreateUpdateEvent({ isUpdating = false }) {
           <label>Title</label>
           <input
             value={title}
+            required
             onChange={(e) => {
               setTitle(e.target.value);
             }}
@@ -117,6 +116,7 @@ export default function CreateUpdateEvent({ isUpdating = false }) {
           <label>Date</label>
           <input
             value={date}
+            required
             onChange={(e) => {
               setDate(e.target.value);
             }}
@@ -124,6 +124,7 @@ export default function CreateUpdateEvent({ isUpdating = false }) {
           <label>Location</label>
           <input
             value={location}
+            required
             onChange={(e) => {
               setLocation(e.target.value);
             }}
